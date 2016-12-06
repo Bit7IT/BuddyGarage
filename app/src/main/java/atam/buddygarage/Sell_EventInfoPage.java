@@ -81,7 +81,7 @@ public class Sell_EventInfoPage extends FragmentActivity implements OnMapReadyCa
 
 
     private void getCurrentLocation() {
-
+//  currently working on
 
 //        Location myLocation  = mMap.getMyLocation();
 //        if(myLocation!=null) {
