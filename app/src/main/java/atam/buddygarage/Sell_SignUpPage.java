@@ -52,6 +52,12 @@ public class Sell_SignUpPage extends Activity {
             System.out.println("The phone is (Register button): " + inputPhoneNo); // for testing
             System.out.println("The password is (Register button): " + inputPw); // for testing
             System.out.println("The confirmPw is (Register button): " + inputPwConfirm); // for testing
+/*
+            // code to call php to do DB actions
+            // need to add check for username, check if phone is valid phone format, check if password and confirmPw is matched, before calling the BackgroundWorker execute
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+            backgroundWorker.execute("create_member", inputUserName, inputPw, inputPhoneNo);
+*/
         }
     } //function for register button
 
