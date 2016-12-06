@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BuddyGarage</string>
+    <string name="title_activity_sell__sign_in">Sell_SignIn</string>
+    <string name="title_activity_sell__sign_in_page">Sell_SignInPage</string>
+    <string name="title_activity_sell__sign_up_page">Sell_SignUpPage</string>
+    <string name="title_activity_sell__list_events_page">Sell_ListEventsPage</string>
+    <string name="title_activity_sell__event_info__page">Sell_EventInfo_Page</string>
+    <string name="title_activity_sell__event_info_page">Map</string>
+    <string name="title_activity_temp">tem</string>
+</resources>
