@@ -28,6 +28,11 @@ public class Sell_SignInPage extends Activity {
         }else{ // if username pw not blank
             System.out.println("The username is (Sign In button): "+inputUserName); // for testing
             System.out.println("The password is (Sign In button): "+inputPW); // for testing
+/*
+            // code to call php to do DB actions
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+            backgroundWorker.execute("login", inputUserName, inputPW);
+*/
             // Go to the Events List page
             Intent intent = new Intent(Sell_SignInPage.this, Sell_ListEventsPage.class); // go to the User Sign up Screen
             startActivity(intent);
