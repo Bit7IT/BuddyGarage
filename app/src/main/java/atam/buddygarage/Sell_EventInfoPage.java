@@ -1,25 +1,17 @@
 package atam.buddygarage;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.Toast;
-
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -29,14 +21,29 @@ public class Sell_EventInfoPage extends FragmentActivity implements OnMapReadyCa
     private GoogleMap mMap;
     private ScrollView scroll;
     private ImageView transparent;
-    private double currentLat, currentLng, lat, lng;
-    // private LocationManager locationManager;
-    //  private LocationListener locationListener;
+    private double currentLat, currentLng;
+    protected Context context;
+    private GpsTool gpsTool;
+    private LatLng location;
+    private Marker marker;
+
 
 
     public void addressEditBtnCLick(View view) {
-        getCurrentLocation();
+        //getCurrentLocation();
+        System.out.println("MAP LOCATION***************************************************************************************************"+currentLat+" "+currentLng);
+        goToMapLocation(currentLat, currentLng);
     }// for address button
+
+    private void goToMapLocation(double lat, double lng) {
+        location = new LatLng(lat, lng);
+        marker = mMap.addMarker(new MarkerOptions().position(location).title("Click marker to navigate"));
+        marker.showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(location));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f)); // zoom
+        //Toast.makeText(this, "Unable to fetch location", Toast.LENGTH_SHORT).show();
+    }// function to pan map & camera location
 
     private void mapScrollBetter() {
         scroll = (ScrollView) findViewById(R.id.scroll);
@@ -66,34 +73,6 @@ public class Sell_EventInfoPage extends FragmentActivity implements OnMapReadyCa
         });
     } // use transparent image to make scroll better
 
-    private void goToMapLocation(double lat, double lng) {
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        LatLng location = new LatLng(lat, lng);
-        Marker marker = mMap.addMarker(new MarkerOptions().position(location).title("Click marker to navigate"));
-        marker.showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(location));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f)); // zoom
-        //Toast.makeText(this, "Unable to fetch location", Toast.LENGTH_SHORT).show();
-    }// function to pan map & camera location
-
-
-
-
-    private void getCurrentLocation() {
-
-
-//        Location myLocation  = mMap.getMyLocation();
-//        if(myLocation!=null) {
-//            currentLat = myLocation.getLatitude();
-//            currentLng = myLocation.getLongitude();
-//            goToMapLocation(currentLat, currentLng);
-//
-//        }else{
-//            Toast.makeText(this, "Unable to fetch the current location", Toast.LENGTH_SHORT).show();
-//        }
-    }//find my location
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +82,41 @@ public class Sell_EventInfoPage extends FragmentActivity implements OnMapReadyCa
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mapScrollBetter();
+        runGPS();
     } // main for Sell_EventInfoPage
+
+
+    /**
+     **** Sub Functions for GPS and to find current location****
+     */
+    private void runGPS(){
+        if (gpsTool == null) {
+            gpsTool = new GpsTool(this) {
+                @Override
+                public void onGpsLocationChanged(Location location) {
+                    super.onGpsLocationChanged(location);
+                    currentLng = location.getLongitude();
+                    currentLat = location.getLatitude();
+                }
+            };
+        }
+    }// run by the getCurrentLocation method
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        gpsTool.stopGpsUpdate();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gpsTool.startGpsUpdate();
+    }
+    /**
+     ************************************************************
+     */
+
+
 
     /**
      * Manipulates the map once available.
@@ -117,8 +130,6 @@ public class Sell_EventInfoPage extends FragmentActivity implements OnMapReadyCa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        currentLat= 51.162680;  //hard coded
-        currentLng= -114.095018; ////hard coded
-        goToMapLocation(currentLat, currentLng);
+        goToMapLocation(22.396428, 114.109497); //hard coded event on Map
     }// run when map initialized
 }
