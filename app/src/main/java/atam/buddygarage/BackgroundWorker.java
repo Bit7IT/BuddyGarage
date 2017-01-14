@@ -17,9 +17,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
-    private Context context;
-    private AlertDialog alertDialog;
-    private BackgroundWorker (Context context) {
+     Context context;
+     AlertDialog alertDialog;
+     BackgroundWorker (Context context) {
         this.context = context;
     }
     @Override

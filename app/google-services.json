@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "361619314793",
+    "firebase_url": "https://garagebuddy-4694e.firebaseio.com",
+    "project_id": "garagebuddy-4694e",
+    "storage_bucket": "garagebuddy-4694e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361619314793:android:ead8d89f71a6f137",
+        "android_client_info": {
+          "package_name": "atam.buddygarage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361619314793-92ko7u82bntt7qmomck4kl8remcgui42.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "atam.buddygarage",
+            "certificate_hash": "55EFD92477C008BEC08234C8F44E16F6A1629EB3"
+          }
+        },
+        {
+          "client_id": "361619314793-c0nj54gtk66fbu15fp0tqbjbge46jejd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSQGLxg8Tv1en2w43f1huBKkl2opt1PzQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "361619314793-c0nj54gtk66fbu15fp0tqbjbge46jejd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
